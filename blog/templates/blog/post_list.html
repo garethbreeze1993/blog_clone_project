@@ -1,0 +1,19 @@
+{% extends 'blog/base.html' %}
+
+
+{% block content %}
+<div class = "centerstage">
+<h1 class="testss">This is a list of posts</h1>
+
+{% for posts in post_list %} <!-- Default variable is model name underscore list when working with a list view --> 
+<div class = "post">
+<h2><a href="{% url 'post_detail' pk=posts.pk %}">{{posts.title}}</a></h2> <!-- Take us to post detail page with primary key equal to the title shown --> 
+<p>By {{posts.author}} </p>
+<div class = "date">
+<p>Published on:{{posts.published|date:'D M Y'}}</p> <!-- tEMPLATE INJECTION THINGY WITH PIPE OPERATOR--> 
+</div>
+<a href="{% url 'post_detail' pk=posts.pk %}">Comments: {{posts.approve_comments.count}}</a> <!-- With this from our post model we call the approve comments method and run the count method on that so we can see how many comments there are -->
+</div>
+{% endfor %}
+</div>
+{% endblock %}

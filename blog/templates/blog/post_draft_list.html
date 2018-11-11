@@ -1,0 +1,12 @@
+{% extends 'blog/base.html' %}
+
+
+{% block content %}
+{% for draft in post_list %} <!-- Don't know why its called posts --> 
+<div class="post">
+<h1><a href="{% url 'post_detail' pk=post.pk %}">{{draft.title}}</a></h1>
+<p class="date">{{draft.created_date|date:'d-m-Y'}}</p>
+<p>{{draft.text|truncatechars:200}}</p> <!-- So you only see first 200 characters i.e. truncate -->
+</div>
+{% endfor %}
+{% endblock %}
